@@ -1,15 +1,18 @@
-import fs from 'fs';
+import { mdLinks } from './mdLinks.js';
 
-export const mdLinks = (path, validate) => {
-  return new Promise((resolve, reject) => {
-    // Identifica si la ruta existe.
-    if(fs.existsSync(path)) {
-    // Chequear si la ruta es absoluta y sino es convertir a una ruta absoluta
-    // Probar si la ruta absoluta es un archivo o un directorio
-    // Si es un directorio filtrar los archivos con extensión .md y pararlos a un arreglo
-    } else {
-    // Si no existe la ruta rechaza la promesa
-    reject('La ruta no existe'); 
-    }
+// Llama a mdLinks con la ruta que deseas procesar y una opción de validación (true o false)
+const ruta = 'docs/01-milestone.md'; // O la ruta que desees
+const validate = true; // Cambia a false si no deseas validar la existencia
+
+mdLinks(ruta, validate)
+  .then((result) => {
+    // Maneja el resultado aquí, por ejemplo, muestra la respuesta en la consola
+    console.log(result);
   })
-}
+  .catch((error) => {
+    // Maneja los errores aquí, por ejemplo, muestra el error en la consola
+    console.error(error);
+  });
+
+
+// Va a leer los argumentos de linea de comando y pasarlos a mdLinks
