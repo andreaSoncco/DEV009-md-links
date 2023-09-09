@@ -1,10 +1,9 @@
 import { mdLinks } from './mdLinks.js';
 
 // Llama a mdLinks con la ruta que deseas procesar y una opción de validación (true o false)
-const ruta = 'docs/01-milestone.md'; // O la ruta que desees
-const validate = true; // Cambia a false si no deseas validar la existencia
+let ruta = 'docs/01-milestone.md'; // O la ruta que desees
 
-mdLinks(ruta, validate)
+mdLinks(ruta)
   .then((result) => {
     // Maneja el resultado aquí, por ejemplo, muestra la respuesta en la consola
     console.log(result);

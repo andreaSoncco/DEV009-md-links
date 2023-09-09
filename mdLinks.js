@@ -1,21 +1,26 @@
 import { convertRelative, validateAbsolute, validateExistence } from './data.js';
 
-export const mdLinks = (ruta, validate) => {
+export const mdLinks = (ruta) => {
   return new Promise((resolve, reject) => {
     if (validateAbsolute(ruta)) {
       if (validateExistence(ruta)) {
-        resolve('La ruta existe y es absoluta');
+        console.log(rutaAbsoluta);
+        resolve("La ruta si existe");
       } else {
-        reject('La ruta no existe');
+        console.log(ruta);
+        reject("La ruta no existe");
       }
     } else {
-      console.log('La ruta es relativa, así que se transformará a absoluta');
-      ruta = convertRelative(ruta); // Asigna la ruta absoluta al resultado de convertRelative
-      if (validateExistence(ruta)) {
-        resolve('La ruta existe y se convirtió a absoluta');
+      var rutaAbsoluta;
+      rutaAbsoluta = convertRelative(ruta)
+      if (validateExistence(rutaAbsoluta)) {
+      console.log(rutaAbsoluta);
+      resolve("La ruta si existe");
       } else {
-        reject('La ruta no existe');
+      console.log(rutaAbsoluta);
+      reject("La ruta no existe");
       }
     }
   });
-}
+};
+
