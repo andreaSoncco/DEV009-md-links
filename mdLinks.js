@@ -1,11 +1,16 @@
-import { convertRelative, validateAbsolute, validateExistence } from './data.js';
+import { convertRelative, extension, validateAbsolute, validateExistence } from './data.js';
 
 export const mdLinks = (ruta) => {
   return new Promise((resolve, reject) => {
     if (validateAbsolute(ruta)) {
       if (validateExistence(ruta)) {
         console.log(rutaAbsoluta);
-        resolve("La ruta si existe");
+        console.log("La ruta si existe");
+        if (/^\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text)$/.test(extension(ruta))) {
+          resolve('El archivo es Markdown')
+        } else {
+          reject('El archivo no es Markdown')
+        }
       } else {
         console.log(ruta);
         reject("La ruta no existe");
@@ -15,7 +20,12 @@ export const mdLinks = (ruta) => {
       rutaAbsoluta = convertRelative(ruta)
       if (validateExistence(rutaAbsoluta)) {
       console.log(rutaAbsoluta);
-      resolve("La ruta si existe");
+      console.log("La ruta si existe");
+        if (/^\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text)$/.test(extension(ruta))) {
+        resolve('El archivo es Markdown')
+        } else {
+        reject('El archivo no es Markdown')
+        }
       } else {
       console.log(rutaAbsoluta);
       reject("La ruta no existe");

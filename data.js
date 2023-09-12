@@ -16,6 +16,12 @@ export const validateExistence = (ruta => {
     return fs.existsSync(ruta)
 });
 
+// Si es un directorio filtrar los archivos con extensión md
+export const extension = (ruta => {
+    return path.extname(ruta);
+})
+
+
+
 
 // Probar si la ruta absoluta es un archivo o un directorio
-// Si es un directorio filtrar los archivos con extensión md
