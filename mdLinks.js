@@ -17,7 +17,7 @@ export const mdLinks = (ruta) => {
         reject("La ruta no existe");
       }
     } else {
-      console.log('La ruta es Relativa');
+      console.log('La ruta no es Absoluta');
       var rutaAbsoluta;
       rutaAbsoluta = convertRelative(ruta)
       if (validateExistence(rutaAbsoluta)) {
@@ -29,7 +29,6 @@ export const mdLinks = (ruta) => {
           reject('El archivo no es Markdown')
         }
       } else {
-        console.log(rutaAbsoluta);
         reject("La ruta no existe");
       }
     }
