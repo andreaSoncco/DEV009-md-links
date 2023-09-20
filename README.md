@@ -426,7 +426,7 @@ Para que el módulo sea instalable desde GitHub solo tiene que:
 
 Con el comando `npm install githubname/reponame` podemos instalar directamente
 
-Por ejemplo, el [`curriculum-parser`](https://github.com/Laboratoria/curriculum-parser)
+Por ejemplo, el [`curriculum-parser`](https://github.com/Laboratoria/iculum-parser)
 que usamos para la currícula no está publicado en el registro público de NPM,
 así que lo instalamos directamente desde GitHub con el comando `npm install
 Laboratoria/curriculum-parser`.
@@ -461,7 +461,7 @@ Laboratoria/curriculum-parser`.
 
 * [Acerca de Node.js - Documentación oficial](https://nodejs.org/es/about/)
 * [¿Qué es Nodejs? Javascript en el Servidor - Fazt en YouTube](https://www.youtube.com/watch?v=WgSc1nv_4Gw)
-* [Asíncronía en js](https://carlosazaustre.es/manejando-la-asincronia-en-javascript)
+* [Asíncronía en js](https://carlosazaustre.es/manejando-la-asnia-en-javascript)
 * [Patrones para coincidencia de caracteres con expresiones regulares - mozilla.org](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_expressions)
 
 ## 9. Para pedir project feedback
