@@ -23,38 +23,29 @@ export const extension = (ruta => {
     return path.extname(ruta);
 })
 
-// Leer el archivo
-export const obtenerArreglo = (ruta => {
+
+export const obtenerArreglo = (ruta) => {
     fs.readFile(ruta, 'utf-8', (err, text) => {
         if (err) {
             console.error('Error al leer el archivo:', err);
             return;
         }
-    
-        const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+        const regex = /\[([^\]]+)\]\(([^)]+\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text))\)/g;
         const links = [];
         let match;
-    
+
         while ((match = regex.exec(text))) {
-            const [, text, href] = match;
-    
-            // Verificar si la URL del enlace tiene una extensión permitida
-            const allowedExtensions = ['.md', '.mkd', '.mdwn', '.mdown', '.mdtxt', '.mdtext', '.markdown', '.text'];
-            const urlParts = href.split('.');
-            const extension = urlParts.length > 1 ? `.${urlParts[urlParts.length - 1]}` : '';
-    
-            if (allowedExtensions.includes(extension)) {
-                // Obtener el nombre del archivo sin la ruta
-                const fileName = path.basename(href);
-                links.push({ href: ruta, text, file: fileName });
-            }
+            const [, text, hrefWithExtension, fileWithExtension] = match;
+
+            // Obtener el nombre del archivo sin la ruta
+            const fileNameWithExtension = path.basename(hrefWithExtension);
+
+            links.push({ href: hrefWithExtension, text, file: fileNameWithExtension });
         }
-    
-        console.log(links);
+
+        return console.log(links);
     });
-    
-})
-
-
+}
 
 // Probar si la ruta absoluta es un archivo o un directorio

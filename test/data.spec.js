@@ -37,16 +37,35 @@ describe('extension', () => {
 })
 
 describe('obtenerArreglo', () => {
-    test('Deberia devolver el arreglo que se compone', () => {
-        expect(obtenerArreglo('05-milestones.md')).toBe([
-            {
-              href: 'C:/Users/Huawei/Documents/DEV009-md-links/05-milestones.md',
-              text: 'recursos',
-              file: '01-milestone.md'
-            }
-          ]);
-    })
+    it('debería obtener un array de enlaces', (done) => {
+        // Simula un archivo de prueba con contenido específico
+        const contenidoArchivo = '[Enlace 1](archivo1.md) [Enlace 2](archivo2.md)';
 
-})
+        // Mock de fs.readFile para que devuelva el contenido de prueba
+        jest.spyOn(require('fs'), 'readFile').mockImplementation((ruta, encoding, callback) => {
+            callback(null, contenidoArchivo);
+        });
 
+        // Captura la salida de console.log durante la ejecución
+        const consoleSpy = jest.spyOn(console, 'log');
+
+        // Llama a la función obtenerArreglo
+        obtenerArreglo('ruta-al-archivo-de-prueba.md');
+
+        // Espera a que la función de callback asíncrona termine
+        setTimeout(() => {
+            // Comprueba que la función haya llamado a console.log con los resultados esperados
+            expect(consoleSpy).toHaveBeenCalledWith([
+                { href: 'archivo1.md', text: 'Enlace 1', file: 'archivo1.md' },
+                { href: 'archivo2.md', text: 'Enlace 2', file: 'archivo2.md' },
+            ]);
+
+            // Restaurar fs.readFile y console.log
+            jest.restoreAllMocks();
+
+            // Indicar que la prueba ha terminado
+            done();
+        }, 100); // Ajusta el tiempo según sea necesario
+    });
+});
 
