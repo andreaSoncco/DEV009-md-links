@@ -37,35 +37,33 @@ describe('extension', () => {
 })
 
 describe('obtenerArreglo', () => {
-    it('debería obtener un array de enlaces', (done) => {
-        // Simula un archivo de prueba con contenido específico
-        const contenidoArchivo = '[Enlace 1](archivo1.md) [Enlace 2](archivo2.md)';
+  it('debería obtener un arreglo de enlaces', async () => {
+    const ruta = 'prueba.md'; // Ruta a tu archivo de prueba
 
-        // Mock de fs.readFile para que devuelva el contenido de prueba
-        jest.spyOn(require('fs'), 'readFile').mockImplementation((ruta, encoding, callback) => {
-            callback(null, contenidoArchivo);
-        });
+    // Llama a la función y espera la respuesta
+    const links = await obtenerArreglo(ruta);
 
-        // Captura la salida de console.log durante la ejecución
-        const consoleSpy = jest.spyOn(console, 'log');
+    // Realiza las aserciones sobre el resultado
+    expect(links).toEqual([
+      {
+        href: 'enlace1.txt',
+        text: 'Enlace 1',
+        file: 'enlace1.txt'
+      },
+      {
+        href: 'enlace2.txt',
+        text: 'Enlace 2',
+        file: 'enlace2.txt'
+      },
+      // Agrega más objetos al arreglo según tus expectativas
+    ]);
+  });
 
-        // Llama a la función obtenerArreglo
-        obtenerArreglo('ruta-al-archivo-de-prueba.md');
+  it('debería manejar errores correctamente', async () => {
+    const ruta = 'ruta/a/un/archivo/que/no/existe.txt'; // Ruta a un archivo inexistente
 
-        // Espera a que la función de callback asíncrona termine
-        setTimeout(() => {
-            // Comprueba que la función haya llamado a console.log con los resultados esperados
-            expect(consoleSpy).toHaveBeenCalledWith([
-                { href: 'archivo1.md', text: 'Enlace 1', file: 'archivo1.md' },
-                { href: 'archivo2.md', text: 'Enlace 2', file: 'archivo2.md' },
-            ]);
-
-            // Restaurar fs.readFile y console.log
-            jest.restoreAllMocks();
-
-            // Indicar que la prueba ha terminado
-            done();
-        }, 100); // Ajusta el tiempo según sea necesario
-    });
+    // Llama a la función y espera el rechazo de la promesa
+    await expect(obtenerArreglo(ruta)).rejects.toMatch('Error al leer el archivo');
+  });
 });
 
