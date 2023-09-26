@@ -1,6 +1,6 @@
 import { mdLinks } from './mdLinks.js';
 
-let ruta = 'README.md';
+let ruta = 'README';
 
 mdLinks(ruta, true)
   .then((links) => {

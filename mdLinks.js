@@ -1,4 +1,6 @@
 import {
+  validateDirectory,
+  getFiles,
   convertRelative,
   extension,
   obtenerArreglo,
@@ -10,11 +12,19 @@ import {
 
 export const mdLinks = (ruta, validate) => {
   return new Promise((resolve, reject) => {
-    let rutaAbsoluta = validateAbsolute(ruta) ? ruta : convertRelative(ruta);
 
-    if (validateExistence(rutaAbsoluta)) {
-      if (/^\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text)$/.test(extension(rutaAbsoluta))) {
-        obtenerArreglo(rutaAbsoluta)
+    let rutaAbsoluta = validateDirectory(ruta) ? getFiles(ruta, '.md') : ruta;
+    console.log(rutaAbsoluta);
+
+    if (Array.isArray(rutaAbsoluta)) {
+      // Validar la existencia de cada archivo en el arreglo
+      const archivo = rutaAbsoluta.map((file) => {
+        
+      let ruta = validateAbsolute(file) ? console.log('false') : convertRelative(file);
+
+      if (validateExistence(ruta)) {
+      if (/^\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text)$/.test(extension(ruta))) {
+        obtenerArreglo(ruta)
           .then((links) => {
             if (validate) {
               const promises = links.map((link) => {
@@ -60,6 +70,8 @@ export const mdLinks = (ruta, validate) => {
     } else {
       reject('La ruta no existe');
     }
+      });
+    };
   });
 };
 

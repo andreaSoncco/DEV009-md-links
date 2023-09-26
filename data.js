@@ -2,6 +2,39 @@ import path from 'node:path';
 import fs from 'node:fs';
 import axios from 'axios';
 
+// Probar si es un directorio
+export const validateDirectory = ((ruta) => {
+  const stats = fs.statSync(ruta);
+  return stats.isDirectory();
+})
+
+export const getFiles = (ruta, extension) => {
+  let filesDirectory = [];
+
+  try {
+    const stats = fs.statSync(ruta);
+
+    if (stats.isDirectory()) {
+      const files = fs.readdirSync(ruta);
+      const fullPaths = files.map((file) => path.join(ruta, file));
+
+      fullPaths.forEach((file) => {
+        const filesSubDirectory = getFiles(file, extension);
+        filesDirectory = filesDirectory.concat(filesSubDirectory);
+      });
+    } else if (stats.isFile() && extension === path.extname(ruta)) {
+      // Si la ruta es un archivo y tiene la extensión deseada, la agregamos
+      filesDirectory.push(ruta);
+    }
+  } catch (error) {
+    // Manejar el error si la ruta no existe o no se puede acceder
+    console.error('Error:', error);
+  }
+
+  return filesDirectory;
+};
+
+
 // Chequear si la ruta es absoluta
 export const validateAbsolute = ((ruta) => {
   return path.isAbsolute(ruta);
@@ -10,7 +43,7 @@ export const validateAbsolute = ((ruta) => {
 // Convertir a una ruta relativa a absoluta
 export const convertRelative = (ruta => {
   let rutaAbsoluta = path.resolve(ruta);
-  rutaAbsoluta = rutaAbsoluta.replace(/\\/g, '/');
+  // rutaAbsoluta = rutaAbsoluta.replace(/\\/g, '/');
   return rutaAbsoluta;
 });
 
@@ -88,4 +121,3 @@ export const validateURLStatusText = (url) => {
 };
 
 
-// Probar si la ruta absoluta es un archivo o un directorio
