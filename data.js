@@ -2,12 +2,43 @@ import path from 'node:path';
 import fs from 'node:fs';
 import axios from 'axios';
 
-// Probar si es un directorio
-export const validateDirectory = ((ruta) => {
-  const stats = fs.statSync(ruta);
-  return stats.isDirectory();
-})
+export const makeCompatible = (ruta) => {
+  return path.normalize(ruta);
+}
 
+export const getFiles = (ruta, extension) => {
+  let filesDirectory = [];
+
+  try {
+    // Normaliza la ruta antes de usarla
+    const rutaNormalizada = makeCompatible(ruta);
+    const stats = fs.statSync(rutaNormalizada);
+
+    if (stats.isDirectory()) {
+      const files = fs.readdirSync(rutaNormalizada);
+      const fullPaths = files.map((file) => path.join(rutaNormalizada, file));
+
+      fullPaths.forEach((file) => {
+        const filesSubDirectory = getFiles(file, extension);
+        filesDirectory = filesDirectory.concat(filesSubDirectory);
+      });
+    } else if (stats.isFile() && extension === path.extname(rutaNormalizada)) {
+      // Si la ruta es un archivo y tiene la extensión deseada, la agregamos
+      filesDirectory.push(rutaNormalizada);
+    }
+
+    // Retornar el resultado sin necesidad de una promesa aquí
+    return filesDirectory;
+  } catch (error) {
+    // Manejar el error si la ruta no existe o no se puede acceder
+    console.error('Error:', error);
+    throw error; // Re-lanzar el error para que las pruebas puedan atraparlo
+  }
+};
+
+
+
+/* Probar si es un directorio o un archivo
 export const getFiles = (ruta, extension) => {
   let filesDirectory = [];
 
@@ -33,7 +64,7 @@ export const getFiles = (ruta, extension) => {
 
   return filesDirectory;
 };
-
+*/
 
 // Chequear si la ruta es absoluta
 export const validateAbsolute = ((ruta) => {
@@ -49,6 +80,7 @@ export const convertRelative = (ruta => {
 
 // Verificar si la ruta existe en el computador
 export const validateExistence = (ruta => {
+  console.log(ruta);
   return fs.existsSync(ruta)
 });
 
@@ -63,7 +95,8 @@ export const obtenerArreglo = (ruta) => {
       if (err) {
         reject('Error al leer el archivo: ' + err);
       }
-
+      
+      // const myRegExp = /\[([a-zA-ZÀ-ÿ0-9-—._:`'"?¿!¡,()\s\u00f1\u00d1]+)]\(http[a-zA-ZÀ-ÿ0-9-@:;!%._/?&\+~#=]{1,250}\)/g;
       const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
       const links = [];
       let match;
@@ -87,19 +120,26 @@ export const validateURL = (url) => {
   return new Promise((resolve, reject) => {
     axios.get(url)
       .then((response) => {
-        resolve(response.status);
+        if (response.statusText === 'OK') {
+          resolve({ status: response.status, ok: 'ok' });
+        } else {
+          reject({ status: response.status, ok: 'No se pudo validar la URL' });
+        }
       })
       .catch((error) => {
-        if (error.response) {
-          reject(error.response.status);
+        if (error.response && error.response.statusText) {
+          reject({ status: error.response.status, ok: 'fail' });
+        } else if (error.request) {
+          reject({ status: 0, ok: 'No se pudo establecer una conexión con la URL' });
         } else {
-          reject('Error al validar la URL');
+          reject({ status: 500, ok: 'Error desconocido al validar la URL' });
         }
       });
   });
 };
 
 
+/*
 export const validateURLStatusText = (url) => {
   return new Promise((resolve, reject) => {
     axios.get(url)
@@ -119,5 +159,5 @@ export const validateURLStatusText = (url) => {
       });
   });
 };
-
+*/
 
