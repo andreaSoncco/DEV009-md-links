@@ -2,6 +2,8 @@ import path from 'node:path';
 import fs from 'node:fs';
 import axios from 'axios';
 
+let ruta = 'C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README';
+
 export const makeCompatible = (ruta) => {
   return path.normalize(ruta);
 }
@@ -74,21 +76,29 @@ export const validateAbsolute = ((ruta) => {
 // Convertir a una ruta relativa a absoluta
 export const convertRelative = (ruta => {
   let rutaAbsoluta = path.resolve(ruta);
-  // rutaAbsoluta = rutaAbsoluta.replace(/\\/g, '/');
+  rutaAbsoluta = makeCompatible(rutaAbsoluta);
+  console.log(rutaAbsoluta);
   return rutaAbsoluta;
 });
 
+
+
+
 // Verificar si la ruta existe en el computador
 export const validateExistence = (ruta => {
-  console.log(ruta);
   return fs.existsSync(ruta)
 });
+
+let resultado = getFiles(ruta, '.md');
+
+console.log(resultado);
 
 // Si es un directorio filtrar los archivos con extensión md
 export const extension = (ruta => {
   return path.extname(ruta);
 })
 
+// Función Asincrona: Leer el archivo y obtener las tres propiedades de los Links
 export const obtenerArreglo = (ruta) => {
   return new Promise((resolve, reject) => {
     fs.readFile(ruta, 'utf-8', (err, text) => {
@@ -115,24 +125,22 @@ export const obtenerArreglo = (ruta) => {
   });
 };
 
-
+// Función Asincrona: 
 export const validateURL = (url) => {
   return new Promise((resolve, reject) => {
     axios.get(url)
       .then((response) => {
         if (response.statusText === 'OK') {
           resolve({ status: response.status, ok: 'ok' });
-        } else {
-          reject({ status: response.status, ok: 'No se pudo validar la URL' });
         }
       })
       .catch((error) => {
-        if (error.response && error.response.statusText) {
+        if (error.response && error.response.statusText === 'Not Found') {
           reject({ status: error.response.status, ok: 'fail' });
-        } else if (error.request) {
-          reject({ status: 0, ok: 'No se pudo establecer una conexión con la URL' });
+        } else if (error.response && error.response.statusText) {
+          reject({ status: error.response.status, ok: error.response.statusText});
         } else {
-          reject({ status: 500, ok: 'Error desconocido al validar la URL' });
+          reject({ status: 'Error desconocido al validar la URL', ok: 'Error desconocido al validar la URL' });
         }
       });
   });

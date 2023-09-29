@@ -53,14 +53,14 @@ describe('validateAbsolute', () => {
 
 describe('convertRelative', () => {
     test('Deberia transformar la ruta Relativa a Absoluta', () => {
-        expect(convertRelative('README.md')).toBe('C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README.md');
+        expect(convertRelative('./README/README.md')).toBe('C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README\\README.md');
     })
 
 })
 
 describe('validateExistence', () => {
     test('Deberia devolver true si la ruta existe en el computador', () => {
-        expect(validateExistence('C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README\\README.md')).toBe(true);
+        expect(validateExistence('README.md')).toBe(true);
     })
 
     test('Deberia devolver false si la ruta no existe en el computador', () => {
@@ -78,7 +78,7 @@ describe('extension', () => {
 
 describe('obtenerArreglo', () => {
   it('debería obtener un arreglo de enlaces', async () => {
-    const ruta = 'prueba.md';
+    const ruta = 'C:/Users/Huawei/Documents/DEV009-md-links/prueba.md';
 
     const links = await obtenerArreglo(ruta);
 
@@ -106,6 +106,9 @@ describe('obtenerArreglo', () => {
 });
 
 // Mock de axios para evitar hacer solicitudes HTTP reales
+// Importa las librerías y la función validateURL
+
+// Mock de axios
 jest.mock('axios');
 
 describe('validateURL', () => {
@@ -121,17 +124,7 @@ describe('validateURL', () => {
     expect(result).toEqual({ status: 200, ok: 'ok' });
   });
 
-  it('debería rechazar con un objeto { status, ok: "No se pudo validar la URL" } cuando la solicitud es exitosa (statusText !== "OK")', async () => {
-    axios.get.mockResolvedValue({ status: 200, statusText: 'Not Found' });
-
-    try {
-      await validateURL('http://example.com');
-    } catch (error) {
-      expect(error).toEqual({ status: 200, ok: 'No se pudo validar la URL' });
-    }
-  });
-
-  it('debería rechazar con un objeto { status, ok: "fail" } cuando la solicitud falla con respuesta', async () => {
+  it('debería rechazar con un objeto { status, ok: "fail" } cuando la solicitud falla con respuesta (statusText !== "OK")', async () => {
     axios.get.mockRejectedValue({ response: { status: 404, statusText: 'Not Found' } });
 
     try {
@@ -141,13 +134,13 @@ describe('validateURL', () => {
     }
   });
 
-  it('debería rechazar con un objeto { status, ok: "No se pudo establecer una conexión con la URL" } cuando la solicitud no tiene respuesta', async () => {
-    axios.get.mockRejectedValue({ request: 'No se pudo establecer una conexión' });
+  it('debería rechazar con un objeto { status, ok: "Mensaje de error" } cuando la solicitud falla con respuesta (statusText distinto a "Not Found")', async () => {
+    axios.get.mockRejectedValue({ response: { status: 500, statusText: 'Internal Server Error' } });
 
     try {
       await validateURL('http://example.com');
     } catch (error) {
-      expect(error).toEqual({ status: 0, ok: 'No se pudo establecer una conexión con la URL' });
+      expect(error).toEqual({ status: 500, ok: 'Internal Server Error' });
     }
   });
 
@@ -157,8 +150,9 @@ describe('validateURL', () => {
     try {
       await validateURL('http://example.com');
     } catch (error) {
-      expect(error).toEqual({ status: 500, ok: 'Error desconocido al validar la URL' });
+      expect(error).toEqual({ status: 'Error desconocido al validar la URL', ok: 'Error desconocido al validar la URL' });
     }
   });
 });
+
 

@@ -1,5 +1,4 @@
 import {
-  makeCompatible,
   getFiles,
   convertRelative,
   extension,
