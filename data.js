@@ -89,9 +89,6 @@ export const validateExistence = (ruta => {
   return fs.existsSync(ruta)
 });
 
-let resultado = getFiles(ruta, '.md');
-
-console.log(resultado);
 
 // Si es un directorio filtrar los archivos con extensión md
 export const extension = (ruta => {
