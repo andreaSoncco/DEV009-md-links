@@ -87,12 +87,12 @@ describe('obtenerArreglo', () => {
       {
         href: 'enlace1.txt',
         text: 'Enlace 1',
-        file: 'enlace1.txt'
+        file: 'prueba.md'
       },
       {
         href: 'enlace2.txt',
         text: 'Enlace 2',
-        file: 'enlace2.txt'
+        file: 'prueba.md'
       },
 
     ]);
