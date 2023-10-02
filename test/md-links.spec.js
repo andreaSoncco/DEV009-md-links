@@ -1,10 +1,12 @@
 import { mdLinks } from "../mdLinks.js";
 
-
 describe('mdLinks', () => {
   test('debería resolver la promesa con los enlaces', () => {
     const path = './README';
     const validate = false;
+
+    // Aumentar el tiempo de espera máximo a 5000 milisegundos (5 segundos)
+    jest.setTimeout(5000);
 
     return mdLinks(path, validate).then((links) => {
       expect(links).toEqual(expect.arrayContaining([
@@ -30,6 +32,9 @@ describe('mdLinks', () => {
   test('debería resolver la promesa con los enlaces', () => {
     const path = './README';
     const validate = true;
+
+    // Aumentar el tiempo de espera máximo a 5000 milisegundos (5 segundos)
+    jest.setTimeout(5000);
 
     return mdLinks(path, validate).then((links) => {
       expect(links).toEqual(expect.arrayContaining([
@@ -63,11 +68,13 @@ describe('mdLinks', () => {
     const path = './ruta/inexistente.md';
     const validate = false;
 
-    
+    // Aumentar el tiempo de espera máximo a 5000 milisegundos (5 segundos)
+    jest.setTimeout(5000);
+
     return mdLinks(path, validate).catch((error) => {
-    
       expect(error).toBe('La ruta no existe');
     });
   });
 
 });
+
