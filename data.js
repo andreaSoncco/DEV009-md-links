@@ -1,38 +1,38 @@
 import path from 'node:path';
-import fs, { link } from 'node:fs';
+import fs from 'node:fs';
 import axios from 'axios';
 
+// Normalizar la ruta para que sea compatible con cualquier sistema operativo
 export const makeCompatible = (ruta) => {
   return path.normalize(ruta);
 }
 
-export const getFiles = (ruta, extension) => {
+// Función Asíncrona: leer directorios o archivos
+export const getFiles = (ruta) => {
   let filesDirectory = [];
 
   try {
-    // Normaliza la ruta antes de usarla
-    const rutaNormalizada = makeCompatible(ruta);
-    const stats = fs.statSync(rutaNormalizada);
+    
+    const stats = fs.statSync(ruta);
 
     if (stats.isDirectory()) {
-      const files = fs.readdirSync(rutaNormalizada);
-      const fullPaths = files.map((file) => path.join(rutaNormalizada, file));
+      const files = fs.readdirSync(ruta);
+      const fullPaths = files.map((file) => path.join(ruta, file));
 
       fullPaths.forEach((file) => {
-        const filesSubDirectory = getFiles(file, extension);
+        const filesSubDirectory = getFiles(file);
         filesDirectory = filesDirectory.concat(filesSubDirectory);
       });
-    } else if (stats.isFile() && extension === path.extname(rutaNormalizada)) {
-      // Si la ruta es un archivo y tiene la extensión deseada, la agregamos
-      filesDirectory.push(rutaNormalizada);
+    } else if (stats.isFile() && (/^\.(md|mkd|mdwn|mdown|mdtxt|mdtext|markdown|text)$/.test(path.extname(ruta)))) {
+      
+      filesDirectory.push(ruta);
     }
 
-    // Retornar el resultado sin necesidad de una promesa aquí
     return filesDirectory;
   } catch (error) {
-    // Manejar el error si la ruta no existe o no se puede acceder
+
     console.error('Error:', error);
-    throw error; // Re-lanzar el error para que las pruebas puedan atraparlo
+    throw error;
   }
 };
 
@@ -41,7 +41,7 @@ export const validateAbsolute = ((ruta) => {
   return path.isAbsolute(ruta);
 })
 
-// Convertir a una ruta relativa a absoluta
+// Convertir una ruta relativa a absoluta
 export const convertRelative = (ruta => {
   let rutaAbsoluta = path.resolve(ruta);
   rutaAbsoluta = makeCompatible(rutaAbsoluta);
@@ -53,13 +53,8 @@ export const validateExistence = (ruta => {
   return fs.existsSync(ruta)
 });
 
-// Si es un directorio filtrar los archivos con extensión md
-export const extension = (ruta => {
-  return path.extname(ruta);
-})
-
 // Función Asincrona: Leer el archivo y obtener las tres propiedades de los Links
-export const obtenerArreglo = (ruta) => {
+export const getArray = (ruta) => {
   return new Promise((resolve, reject) => {
     const links = [];
     const fileRelativePath = path.basename(ruta);
@@ -84,8 +79,7 @@ export const obtenerArreglo = (ruta) => {
   });
 };
 
-
-// Función Asincrona: 
+// Función Asincrona: Solicitud HTTP con axios
 export const validateURL = (url) => {
   return new Promise((resolve, reject) => {
     axios.get(url)

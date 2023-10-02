@@ -1,7 +1,7 @@
 import {
   getFiles,
   convertRelative,
-  obtenerArreglo,
+  getArray,
   validateAbsolute,
   validateExistence,
   validateURL,
@@ -21,7 +21,7 @@ export const mdLinks = (path, validate) => {
     const allLinks = [];
 
     const processFile = (file) => {
-      return obtenerArreglo(file)
+      return getArray(file)
         .then((links) => {
           if (validate) {
             const linkPromises = links.map((link) => {

@@ -1,43 +1,52 @@
-import { getFiles, validateAbsolute, convertRelative, validateExistence, extension, obtenerArreglo, validateURL } from '../data.js';
+import { makeCompatible, getFiles, validateAbsolute, convertRelative, validateExistence, getArray, validateURL, calculateStatistics } from '../data.js';
 import axios from 'axios';
+
+describe('makeCompatible', () => {
+  test('debería normalizar una ruta', () => {
+    const ruta1 = '/ruta/con/doble//slash/';
+    const resultado1 = makeCompatible(ruta1);
+    expect(resultado1).toBe("\\ruta\\con\\doble\\slash\\");
+  });
+
+  test('debería normalizar una ruta', () => {
+    const ruta2 = 'ruta//con//doble//slash//';
+    const resultado2 = makeCompatible(ruta2);
+    expect(resultado2).toBe("ruta\\con\\doble\\slash\\");
+  });
+
+});
 
 
 describe('getFiles', () => {
   it('debería devolver una lista con las rutas de los archivos en un directorio y subdirectorios con la extensión correcta', (done) => {
     try {
-      const testDataDir = 'testData/existingDirectory'; // Usamos la ruta del directorio existente en el proyecto
-      const files = getFiles(testDataDir, '.txt');
-      // Realiza tus comprobaciones aquí
+      const testDataDir = 'testData/existingDirectory';
+      const files = getFiles(testDataDir);
+      
       expect(files).toEqual([
-        'testData\\existingDirectory\\file1.txt',
-        'testData\\existingDirectory\\subdirectory\\file2.txt',
-        'testData\\existingDirectory\\subdirectory\\file3.txt',
+        'testData\\existingDirectory\\file1.mdwn',
+        'testData\\existingDirectory\\subdirectory\\file2.mkd',
+        'testData\\existingDirectory\\subdirectory\\file3.text',
       ]);
-      done(); // Indica que la prueba ha finalizado correctamente
+      done();
     } catch (error) {
-      done(error); // Indica que la prueba ha fallado y pasa el error a done()
+      done(error);
     }
   });
 
   it('debería devolver una lista vacía cuando la ruta no existe', (done) => {
     try {
-      const nonExistentDir = 'testData\\nonexistentDirectory'; // Esta ruta no existe
-      const files = getFiles(nonExistentDir, '.txt');
-      // Realiza tus comprobaciones aquí
+      const nonExistentDir = 'testData\\nonexistentDirectory';
+      const files = getFiles(nonExistentDir);
+      
       expect(files).toEqual([]);
-      done(); // Indica que la prueba ha finalizado correctamente
+      done();
     } catch (error) {
-      done(error); // Indica que la prueba ha fallado y pasa el error a done()
+      done(error);
     }
   });
 
-  // Otras pruebas...
 });
-
-
-
-
-
 
 
 describe('validateAbsolute', () => {
@@ -69,29 +78,22 @@ describe('validateExistence', () => {
 
 })
 
-describe('extension', () => {
-    test('Deberia devolver la extensión de la ruta', () => {
-        expect(extension('C:/Users/Huawei/Documents/DEV009-md-links/README.md')).toBe('.md');
-    })
-
-})
-
-describe('obtenerArreglo', () => {
+describe('getArray', () => {
   it('debería obtener un arreglo de enlaces', async () => {
     const ruta = 'C:/Users/Huawei/Documents/DEV009-md-links/prueba.md';
 
-    const links = await obtenerArreglo(ruta);
+    const links = await getArray(ruta);
 
 
     expect(links).toEqual([
       {
-        href: 'enlace1.txt',
-        text: 'Enlace 1',
+        href: 'https://curriculum.laboratoria.la/es/topics/javascript/03-functions/02-arrow',
+        text: 'Arrow Functions',
         file: 'prueba.md'
       },
       {
-        href: 'enlace2.txt',
-        text: 'Enlace 2',
+        href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
+        text: 'Funciones — bloques de código reutilizables - MDN',
         file: 'prueba.md'
       },
 
@@ -101,16 +103,15 @@ describe('obtenerArreglo', () => {
   it('debería manejar errores correctamente', async () => {
     const ruta = 'ruta/a/un/archivo/que/no/existe.txt';
 
-    await expect(obtenerArreglo(ruta)).rejects.toMatch('Error al leer el archivo');
+    await expect(getArray(ruta)).rejects.toMatch('Error al leer el archivo');
   });
 });
 
-// Mock de axios para evitar hacer solicitudes HTTP reales
-// Importa las librerías y la función validateURL
 
-// Mock de axios
+// Mock de axios para evitar hacer solicitudes HTTP reales
 jest.mock('axios');
 
+// Prueba unitaria y uso de Test Mock para testear validateURL
 describe('validateURL', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -118,7 +119,6 @@ describe('validateURL', () => {
 
   it('debería resolver con un objeto { status, ok: "ok" } cuando la solicitud es exitosa (statusText === "OK")', async () => {
     axios.get.mockResolvedValue({ status: 200, statusText: 'OK' });
-
     const result = await validateURL('http://example.com');
 
     expect(result).toEqual({ status: 200, ok: 'ok' });
@@ -154,5 +154,28 @@ describe('validateURL', () => {
     }
   });
 });
+
+
+describe('calculateStatistics', () => {
+  test('debería calcular estadísticas correctamente', () => {
+  
+    const links = [
+      { href: 'https://ejemplo.com', ok: 'ok' },
+      { href: 'https://ejemplo.com', ok: 'ok' },
+      { href: 'https://otroejemplo.com', ok: 'error' },
+      { href: 'https://tercerejemplo.com', ok: 'ok' },
+    ];
+
+    const resultado = calculateStatistics(links);
+    const resultadoEsperado = {
+      total: 4,
+      unique: 3,
+      broken: 1,
+    };
+
+    expect(resultado).toEqual(resultadoEsperado);
+  });
+});
+
 
 
