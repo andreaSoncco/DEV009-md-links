@@ -1,5 +1,10 @@
 {
-  "name": "md-links",
+  "name": "md-links-andrea",
+  "description": "Extracts and validates links according to the path of the provided file or directory, returns the properties, validations and calculations on the links found.",
+  "main": "index.js",
+  "authors": [
+    "Andrea Soncco Cisneros"
+  ],
   "version": "0.1.0",
   "engines": {
     "node": ">=16.x"
