@@ -1,12 +1,12 @@
-# MARKDOWN LINKS 📱💜🎨 - Librería "md-links" 📲
+# MARKDOWN LINKS 🔎🔗 - Librería "md-links" 📲
 
-Se puede instalar esta librería utilizando NPM (Node Package Manager), desde tu terminal utilizas cualquiera de los siguientes comandos:
+Se puede instalar esta librería ✔️ utilizando NPM (Node Package Manager), desde tu terminal puedes utilizar cualquiera de los siguientes comandos:
 
 - ```npm install andreaSoncco/DEV009-md-links```
 
 - ```npm install md-links andrea```
 
-Link del Github Project donde me organice: [Ir a Github Project](https://github.com/users/andreaSoncco/projects/4/views/1)
+Link del Github Project donde me organice 🕒: [Ir a Github Project](https://github.com/users/andreaSoncco/projects/4/views/1)
 
 ## Índice
 
@@ -19,17 +19,17 @@ Link del Github Project donde me organice: [Ir a Github Project](https://github.
 
 ## 1. Preámbulo.
 
-[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
+[Markdown](https://es.wikipedia.org/wiki/Markdown) 📄 es un lenguaje de marcado
 ligero muy popular entre developers. Es usado en
 muchísimas plataformas que manejan texto plano (GitHub, foros, blogs, etc.).
 
 Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
-la información que se quiere compartir.
+la información  que se quiere compartir.
 
-Se ha creado una herramienta usando [Node.js](https://nodejs.org/), que lea y 
-analice archivos en formato `Markdown`, para verificar los links que contengan y reportar
-algunas estadísticas.
+Esta herramieta creada a partir de [Node.js](https://nodejs.org/) sirve para leer y 
+analizar archivos en formato `Markdown`, buscando links validos ✔️ y rotos ✖️ para mostrarnos sus
+propiedades y algunas estadísticas.
 
 ## 2. Definición del producto.
 
@@ -37,9 +37,12 @@ Este proyecto consiste en una librería en Node.js que funciona como
 herramienta para extraer y validar enlaces según la ruta del archivo o directorio 
 proporcionado, devuelve las propiedades, validaciones y cálculos de los enlaces 
 encontrados.
+
+![Imagen Representativa del Proyecto](md-links.png)
  
 ## 3. Documentación de la Interfaz de Programación de Aplicaciones API.
 
+  🗂
   En este proyecto se decidió utilizar ES Modules con la síntaxis `import` / `export`, ya que
   es una versión más actual y se necesito hacer algunos pasos adicionales de configuración
   como instalar babel y modificar el package.json.
@@ -56,22 +59,22 @@ encontrados.
 
 ## 4. Instrucciones de Instalación y Uso.
 
-### 4.1. Instalación 📏🖍🖼
+### 4.1. Instalación 👩🏽‍💻
 
 Esta librería está disponible de dos formas: como un módulo publicado
 en GitHub, que las usuarias pueden instalar e importar en otros proyectos, y como
 una interfaz de línea de comandos (CLI) que permitirá utilizar la librería directamente
 desde el terminal.
 
-Se puede instalar esta librería utilizando NPM (Node Package Manager), desde tu terminal utilizas cualquiera de los siguientes comandos:
+Se puede instalar esta librería utilizando NPM (Node Package Manager), desde tu terminal puedes utilizar cualquiera de los siguientes comandos:
 
 - ```npm install andreaSoncco/DEV009-md-links```
 
 - ```npm install md-links andrea```
 
-### 4.2. Guía de Uso 💻
+### 4.2. Guía de Uso 📋💻
 
-#### A. Obtener Arreglo con Propiedades de los Links
+#### A. Obtener arreglo con propiedades de los links 🖇
 Al ejecutar el siguiente comando:
 
   ```md-links ./firstDirectory```
@@ -106,7 +109,7 @@ Se obtendrá un arreglo de objetos con las propiedades:
   }
 ]
 ```
-#### B. Obtener Arreglo con Propiedades y Validaciones de los Links
+#### B. Obtener arreglo con propiedades y validaciones de los links 🖇✅
 Para esto se utiliza el argumento `--validate` y se ejecutar el siguiente comando:
 
   `md-links ./firstDirectory --validate`
@@ -153,7 +156,7 @@ Obtendremos un arreglo de objetos con las propiedades:
 
 ```
 
-#### C. Obtener Estadísticas de los Links
+#### C. Obtener estadísticas de los Links 🧮
 Para esto se utiliza el argumento `--stats` y se ejecuta el siguiente comando:
 
   `md-links ./firstDirectory --stats`
@@ -171,7 +174,7 @@ Unique: 3
 
 Utiliza esta opción para obtener una visión general de la cantidad total de enlaces y la diversidad de enlaces únicos en tus documentos Markdown.
 
-#### C. Obtener Estadísticas de los Links
+#### D. Obtener estadísticas y contar los links rotos ✖️
 Para esto se utiliza el argumento `--validate` y `--stats`, se ejecuta el siguiente comando:
 
   `md-links ./firstDirectory --validate --stats`
@@ -186,9 +189,36 @@ Broken: 1
 
 * `Broken:` El número de enlaces que están rotos o que no devuelven un mensaje de ok
 
-## 4. Proceso de Diseño y Desarrollo.
+## 5. Proceso de Diseño y Desarrollo.
 
-### 4.1. Planificación y Diseño.
+### 5.1. Planificación y Diseño. ✏️
 
-### 4.2. Desarrollo del Proyecto.
+Para realizar el proyecto me organice utizando Github Project. De esta manera planifique mejor el tiempo y dividi el trabajo en metas por sprint usando `milestones` que contienen `issues` o tareas más pequeñas.Aplique metodología SCRUM de trabajo ágil.
+
+Para el desarrollo de la libreria y teniendo en cuenta que se debia pensar en la Interfaz de Programación de Aplicaciones API realice un Diagrama de Flujo o Pseudocódigo 💡 que me ayudo a poder ordenarme respecto a las funciones que se necesitaban crear y codear la totalidad del proyecto.
+
+[Ir al Diagrama de Flujo o Pseudocódigo de mdLinks: ](https://drive.google.com/file/d/1AXoFnJ6bVQXE7URR6OiYP7XmP8JzJUFA/view?usp=sharing)
+
+** Diagrama de Flujo Primera Parte **
+![Tablero de Github Project](DiagramadeFlujoPrimero.png)
+
+** Diagrama de Flujo Segunda Parte **
+
+![Tablero de Github Project](DiagramadeFlujoSegundo.png)
+
+### 5.2. Desarrollo del Proyecto.
+
+El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui tomando en cuenta el feedback recibido para hacer mejoras, a continuación pasaré mostrar la imagen de mi tablero en Github Project donde sigo el desarrollo por 5 hitos:
+
+- Hito 1 ♟: Creación de la función mdLinks que devuelve una promesa con un arreglo de tres propiedades de los links
+
+- Hito 2 💫: Agregar el argumento validate para agregar dos propiedades sobre validaciones HTTP
+
+- Hito 3 📚: Leer directorios y no solo archivos
+
+- Hito 4 ⌨️: Crear la interfaz de línea de comando
+
+- Hito 5 ⭐️: Trabajar la recursividad de la función para leer directorios
+
+![Tablero de Github Project](md-links.png)
 
