@@ -17,7 +17,9 @@ Link del Github Project donde me organice 🕒: [Ir a Github Project](https://gi
 * [5. Proceso de Diseño y Desarrollo](#5-proceso-de-diseño-y-desarrollo)
 * [6. Herramientas de Elaboración](#6-herramientas-de-elaboración)
 
-## 1. Preámbulo.
+***
+
+## 1. PREÁMBULO.
 
 [Markdown](https://es.wikipedia.org/wiki/Markdown) 📄 es un lenguaje de marcado
 ligero muy popular entre developers. Es usado en
@@ -31,7 +33,7 @@ Esta herramieta creada a partir de [Node.js](https://nodejs.org/) sirve para lee
 analizar archivos en formato `Markdown`, buscando links validos ✔️ y rotos ❌ para mostrarnos sus
 propiedades y algunas estadísticas.
 
-## 2. Definición del producto.
+## 2. DEFINICIÓN DEL PRODUCTO.
 
 Este proyecto consiste en una librería en Node.js que funciona como
 herramienta para extraer y validar enlaces según la ruta del archivo o directorio 
@@ -40,7 +42,7 @@ encontrados.
 
 ![Imagen Representativa del Proyecto](md-links.png)
  
-## 3. Documentación de la Interfaz de Programación de Aplicaciones API.
+## 3. DOCUMENTACIÓN DE LA INTERFAZ DE PROGRAMACIÓN DE APLICACIONES API.
 
   🗂
   En este proyecto se decidió utilizar ES Modules con la síntaxis `import` / `export`, ya que
@@ -57,7 +59,7 @@ encontrados.
   Al final del proyecto se testeo las funciones puras y la función general `mdLinks(path, validate)`
   luego de instalar jest y aplicar el test Mock para el módulo de Axios.
 
-## 4. Instrucciones de Instalación y Uso.
+## 4. INSTRUCCIONES DE INSTALACIÓN Y USO.
 
 ### 4.1. Instalación 👩🏽‍💻
 
@@ -189,7 +191,7 @@ Broken: 1
 
 * `Broken:` El número de enlaces que están rotos o que no devuelven un mensaje de ok
 
-## 5. Proceso de Diseño y Desarrollo.
+## 5. PROCESO DE DISEÑO Y DESARROLLO.
 
 ### 5.1. Planificación y Diseño. ✏️
 
@@ -199,10 +201,10 @@ Para el desarrollo de la libreria y teniendo en cuenta que se debia pensar en la
 
 [Ir al Diagrama de Flujo o Pseudocódigo de mdLinks: ](https://drive.google.com/file/d/1AXoFnJ6bVQXE7URR6OiYP7XmP8JzJUFA/view?usp=sharing)
 
-*** Diagrama de Flujo Primera Parte ***
+**Diagrama de Flujo Primera Parte**
 ![Tablero de Github Project](DiagramadeFlujoPrimero.png)
 
-*** Diagrama de Flujo Segunda Parte ***
+**Diagrama de Flujo Segunda Parte**
 
 ![Tablero de Github Project](DiagramadeFlujoSegundo.png)
 
@@ -220,11 +222,21 @@ El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui 
 
 - Hito 5 ⭐️: Trabajar la recursividad de la función para leer directorios
 
-*** Tablero de Github Project ***
+**Tablero de Github Project**
 
 ![Tablero de Github Project](Github.png)
 
-*** Cuadro de Milestones ***
+**Cuadro de Milestones**
 
 ![Cuadro de Milestones](Milestones.png)
+
+## 6. HERRAMIENTAS DE ELABORACIÓN
+
+👩‍🔧💻
+- JAVASCRIPT para crear las funciones
+- Node.js como entorno de programación de JavaScript con sus Módulos fs y path
+- La librería de Axios de Node.js para hacer las peticiones HTTP
+- Github Project para planificar el tiempo y dividir las tareas
+- Jest para testear las funciones sincronas y asincronas
+- NPM (Node Package Manager) para crear la interfaz de línea de comando
 
