@@ -28,7 +28,7 @@ muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información  que se quiere compartir.
 
 Esta herramieta creada a partir de [Node.js](https://nodejs.org/) sirve para leer y 
-analizar archivos en formato `Markdown`, buscando links validos ✔️ y rotos ✖️ para mostrarnos sus
+analizar archivos en formato `Markdown`, buscando links validos ✔️ y rotos ❌ para mostrarnos sus
 propiedades y algunas estadísticas.
 
 ## 2. Definición del producto.
@@ -74,7 +74,7 @@ Se puede instalar esta librería utilizando NPM (Node Package Manager), desde tu
 
 ### 4.2. Guía de Uso 📋💻
 
-#### A. Obtener arreglo con propiedades de los links 🖇
+#### 4.2.1. Obtener arreglo con propiedades de los links 🖇
 Al ejecutar el siguiente comando:
 
   ```md-links ./firstDirectory```
@@ -109,7 +109,7 @@ Se obtendrá un arreglo de objetos con las propiedades:
   }
 ]
 ```
-#### B. Obtener arreglo con propiedades y validaciones de los links 🖇✅
+#### 4.2.2. Obtener arreglo con propiedades y validaciones de los links 🖇✅
 Para esto se utiliza el argumento `--validate` y se ejecutar el siguiente comando:
 
   `md-links ./firstDirectory --validate`
@@ -156,7 +156,7 @@ Obtendremos un arreglo de objetos con las propiedades:
 
 ```
 
-#### C. Obtener estadísticas de los Links 🧮
+#### 4.2.3. Obtener estadísticas de los Links 🧮
 Para esto se utiliza el argumento `--stats` y se ejecuta el siguiente comando:
 
   `md-links ./firstDirectory --stats`
@@ -174,7 +174,7 @@ Unique: 3
 
 Utiliza esta opción para obtener una visión general de la cantidad total de enlaces y la diversidad de enlaces únicos en tus documentos Markdown.
 
-#### D. Obtener estadísticas y contar los links rotos ✖️
+#### 4.2.4. Obtener estadísticas y contar los links rotos ❌
 Para esto se utiliza el argumento `--validate` y `--stats`, se ejecuta el siguiente comando:
 
   `md-links ./firstDirectory --validate --stats`
@@ -199,16 +199,16 @@ Para el desarrollo de la libreria y teniendo en cuenta que se debia pensar en la
 
 [Ir al Diagrama de Flujo o Pseudocódigo de mdLinks: ](https://drive.google.com/file/d/1AXoFnJ6bVQXE7URR6OiYP7XmP8JzJUFA/view?usp=sharing)
 
-** Diagrama de Flujo Primera Parte **
+*** Diagrama de Flujo Primera Parte ***
 ![Tablero de Github Project](DiagramadeFlujoPrimero.png)
 
-** Diagrama de Flujo Segunda Parte **
+*** Diagrama de Flujo Segunda Parte ***
 
 ![Tablero de Github Project](DiagramadeFlujoSegundo.png)
 
 ### 5.2. Desarrollo del Proyecto.
 
-El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui tomando en cuenta el feedback recibido para hacer mejoras, a continuación pasaré mostrar la imagen de mi tablero en Github Project donde sigo el desarrollo por 5 hitos:
+El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui tomando en cuenta el feedback recibido para hacer mejoras, a continuación pasaré a mostrar la imagen de mi tablero en Github Project donde guió el desarrollo por 5 hitos:
 
 - Hito 1 ♟: Creación de la función mdLinks que devuelve una promesa con un arreglo de tres propiedades de los links
 
@@ -220,5 +220,11 @@ El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui 
 
 - Hito 5 ⭐️: Trabajar la recursividad de la función para leer directorios
 
-![Tablero de Github Project](md-links.png)
+*** Tablero de Github Project ***
+
+![Tablero de Github Project](Github.png)
+
+*** Cuadro de Milestones ***
+
+![Cuadro de Milestones](Milestones.png)
 
