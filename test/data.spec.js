@@ -20,13 +20,13 @@ describe('makeCompatible', () => {
 describe('getFiles', () => {
   it('debería devolver una lista con las rutas de los archivos en un directorio y subdirectorios con la extensión correcta', (done) => {
     try {
-      const testDataDir = 'testData/existingDirectory';
+      const testDataDir = 'test/testData/existingDirectory';
       const files = getFiles(testDataDir);
       
       expect(files).toEqual([
-        'testData\\existingDirectory\\file1.mdwn',
-        'testData\\existingDirectory\\subdirectory\\file2.mkd',
-        'testData\\existingDirectory\\subdirectory\\file3.text',
+        'test\\testData\\existingDirectory\\file1.mdwn',
+        'test\\testData\\existingDirectory\\subdirectory\\file2.mkd',
+        'test\\testData\\existingDirectory\\subdirectory\\file3.text',
       ]);
       done();
     } catch (error) {
@@ -36,7 +36,7 @@ describe('getFiles', () => {
 
   it('debería devolver una lista vacía cuando la ruta no existe', (done) => {
     try {
-      const nonExistentDir = 'testData\\nonexistentDirectory';
+      const nonExistentDir = 'test\\testData\\nonexistentDirectory';
       const files = getFiles(nonExistentDir);
       
       expect(files).toEqual([]);
@@ -80,7 +80,7 @@ describe('validateExistence', () => {
 
 describe('getArray', () => {
   it('debería obtener un arreglo de enlaces', async () => {
-    const ruta = 'C:/Users/Huawei/Documents/DEV009-md-links/prueba.md';
+    const ruta = 'C:/Users/Huawei/Documents/DEV009-md-links/DIRECTORIO/Archivo/prueba.md';
 
     const links = await getArray(ruta);
 
@@ -91,12 +91,6 @@ describe('getArray', () => {
         text: 'Arrow Functions',
         file: 'prueba.md'
       },
-      {
-        href: 'https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions',
-        text: 'Funciones — bloques de código reutilizables - MDN',
-        file: 'prueba.md'
-      },
-
     ]);
   });
 

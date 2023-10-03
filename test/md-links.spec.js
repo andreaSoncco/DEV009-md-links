@@ -2,7 +2,7 @@ import { mdLinks } from "../mdLinks.js";
 
 describe('mdLinks', () => {
   test('debería resolver la promesa con los enlaces', () => {
-    const path = './README';
+    const path = './DIRECTORIO';
     const validate = false;
 
     // Aumentar el tiempo de espera máximo a 5000 milisegundos (5 segundos)
@@ -30,7 +30,7 @@ describe('mdLinks', () => {
   });
 
   test('debería resolver la promesa con los enlaces', () => {
-    const path = './README';
+    const path = './DIRECTORIO';
     const validate = true;
 
     // Aumentar el tiempo de espera máximo a 5000 milisegundos (5 segundos)

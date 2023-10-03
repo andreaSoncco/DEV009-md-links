@@ -1,4 +1,4 @@
-# MARKDOWN LINKS 🔎🔗 - Librería "md-links" 📲
+# MARKDOWN LINKS 🔎🗂 - Librería "md-links" 🔗🔍
 
 Se puede instalar esta librería ✔️ utilizando NPM (Node Package Manager), desde tu terminal puedes utilizar cualquiera de los siguientes comandos:
 
@@ -6,7 +6,7 @@ Se puede instalar esta librería ✔️ utilizando NPM (Node Package Manager), d
 
 - ```npm install md-links andrea```
 
-Link del Github Project donde me organice 🕒: [Ir a Github Project](https://github.com/users/andreaSoncco/projects/4/views/1)
+Github Project donde me organice 🕒: [Ir a Github Project](https://github.com/users/andreaSoncco/projects/4/views/1)
 
 ## Índice
 
@@ -40,7 +40,7 @@ herramienta para extraer y validar enlaces según la ruta del archivo o director
 proporcionado, devuelve las propiedades, validaciones y cálculos de los enlaces 
 encontrados.
 
-![Imagen Representativa del Proyecto](md-links.png)
+![Imagen Representativa del Proyecto](img/md-links.png)
  
 ## 3. DOCUMENTACIÓN DE LA INTERFAZ DE PROGRAMACIÓN DE APLICACIONES API.
 
@@ -202,11 +202,11 @@ Para el desarrollo de la libreria y teniendo en cuenta que se debia pensar en la
 [Ir al Diagrama de Flujo o Pseudocódigo de mdLinks: ](https://drive.google.com/file/d/1AXoFnJ6bVQXE7URR6OiYP7XmP8JzJUFA/view?usp=sharing)
 
 **Diagrama de Flujo Primera Parte**
-![Tablero de Github Project](DiagramadeFlujoPrimero.png)
+![Tablero de Github Project](img/DiagramadeFlujoPrimero.png)
 
 **Diagrama de Flujo Segunda Parte**
 
-![Tablero de Github Project](DiagramadeFlujoSegundo.png)
+![Tablero de Github Project](img/DiagramadeFlujoSegundo.png)
 
 ### 5.2. Desarrollo del Proyecto.
 
@@ -224,19 +224,19 @@ El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui 
 
 **Tablero de Github Project**
 
-![Tablero de Github Project](Github.png)
+![Tablero de Github Project](img/Github.png)
 
 **Cuadro de Milestones**
 
-![Cuadro de Milestones](Milestones.png)
+![Cuadro de Milestones](img/Milestones.png)
 
 ## 6. HERRAMIENTAS DE ELABORACIÓN
 
 👩‍🔧💻
-- JAVASCRIPT para crear las funciones
-- Node.js como entorno de programación de JavaScript con sus Módulos fs y path
-- La librería de Axios de Node.js para hacer las peticiones HTTP
-- Github Project para planificar el tiempo y dividir las tareas
-- Jest para testear las funciones sincronas y asincronas
-- NPM (Node Package Manager) para crear la interfaz de línea de comando
+- JAVASCRIPT: para crear las funciones
+- Node.js: como entorno de programación de JavaScript con sus Módulos `fs` y `path`
+- Axios: Librería de Node.js para hacer las peticiones HTTP
+- Github Project: para planificar el tiempo y dividir las tareas
+- Jest: para testear las funciones sincronas y asincronas
+- NPM (Node Package Manager): para crear la interfaz de línea de comando
 
