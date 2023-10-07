@@ -6,8 +6,6 @@ Se puede instalar esta librería ✔️ utilizando NPM (Node Package Manager), d
 
 - ```npm install md-links andrea```
 
-Github Project donde me organice 🕒: [Ir a Github Project](https://github.com/users/andreaSoncco/projects/4/views/1)
-
 ## Índice
 
 * [1. Preámbulo](#1-preámbulo)
