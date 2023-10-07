@@ -1,6 +1,6 @@
 import {
   getFiles,
-  convertRelative,
+  convertToAbsolute,
   getArray,
   validateAbsolute,
   validateExistence,
@@ -10,14 +10,15 @@ import {
 
 export const mdLinks = (path, validate) => {
   return new Promise((resolve, reject) => {
-    const absolutePath = makeCompatible(validateAbsolute(path) ? path : convertRelative(path));
+    let absolutePath = (validateAbsolute(path) ? path : convertToAbsolute(path));
+    absolutePath = makeCompatible(absolutePath);
 
     if (!validateExistence(absolutePath)) {
       reject('La ruta no existe');
       return;
     }
 
-    const filesArray = getFiles(absolutePath, '.md');
+    const filesArray = getFiles(absolutePath);
     const allLinks = [];
 
     const processFile = (file) => {

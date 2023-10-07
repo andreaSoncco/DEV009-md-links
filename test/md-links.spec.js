@@ -21,7 +21,7 @@ describe('mdLinks', () => {
           file: 'datos.text'
         },
         {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
+          href: 'https://es.wikipedia.org/wiki/Markdowns',
           text: 'Markdown',
           file: 'hola.markdown'
         }
@@ -53,11 +53,11 @@ describe('mdLinks', () => {
           ok: 'ok'
         },
         {
-          href: 'https://es.wikipedia.org/wiki/Markdown',
+          href: 'https://es.wikipedia.org/wiki/Markdowns',
           text: 'Markdown',
           file: 'hola.markdown',
-          status: 200,
-          ok: 'ok'
+          status: 404,
+          ok: 'fail'
         }
       ]));
     });

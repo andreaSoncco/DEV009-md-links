@@ -42,7 +42,7 @@ export const validateAbsolute = ((ruta) => {
 })
 
 // Convertir una ruta relativa a absoluta
-export const convertRelative = (ruta => {
+export const convertToAbsolute = (ruta => {
   let rutaAbsoluta = path.resolve(ruta);
   rutaAbsoluta = makeCompatible(rutaAbsoluta);
   return rutaAbsoluta;

@@ -1,4 +1,4 @@
-import { makeCompatible, getFiles, validateAbsolute, convertRelative, validateExistence, getArray, validateURL, calculateStatistics } from '../data.js';
+import { makeCompatible, getFiles, validateAbsolute, convertToAbsolute, validateExistence, getArray, validateURL, calculateStatistics } from '../data.js';
 import axios from 'axios';
 
 describe('makeCompatible', () => {
@@ -60,9 +60,9 @@ describe('validateAbsolute', () => {
 
 })
 
-describe('convertRelative', () => {
+describe('convertToAbsolute', () => {
     test('Deberia transformar la ruta Relativa a Absoluta', () => {
-        expect(convertRelative('./README/README.md')).toBe('C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README\\README.md');
+        expect(convertToAbsolute('./README/README.md')).toBe('C:\\Users\\Huawei\\Documents\\DEV009-md-links\\README\\README.md');
     })
 
 })

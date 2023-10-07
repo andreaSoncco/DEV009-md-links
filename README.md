@@ -236,7 +236,10 @@ El desarrollo total de la libreria tomo cinco sprints y al cabo de cada uno fui 
 - JAVASCRIPT: para crear las funciones
 - Node.js: como entorno de programación de JavaScript con sus Módulos `fs` y `path`
 - Axios: Librería de Node.js para hacer las peticiones HTTP
-- Github Project: para planificar el tiempo y dividir las tareas
-- Jest: para testear las funciones sincronas y asincronas
 - NPM (Node Package Manager): para crear la interfaz de línea de comando
+- Terminal de Git Bash o PowerShell
+- Jest: para testear las funciones sincronas y asincronas
+- Github Project: para planificar el tiempo y dividir las tareas
+- Diagrama de Flujo o Pseudocódigo en Microsoft Word
+
 
